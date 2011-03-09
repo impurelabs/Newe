@@ -27,6 +27,11 @@ dev:
   mailer:
     param:
       delivery_strategy: none
+  storage:
+    class: sfPDOSessionStorage
+    param:
+      db_table: session
+      database: doctrine
 
 all:
   routing:

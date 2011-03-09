@@ -1,17 +1,17 @@
 <?php
 
 /**
- * BaseUser
+ * BaseAccount
  *
  * @package    newe
  * @subpackage model
  * @author     Iulian Manea <iulian.manea@impurelabs.com>
  */
-abstract class BasesfGuardUser extends sfDoctrineRecord
+abstract class BaseAccount extends sfDoctrineRecord
 {
 	public function setTableDefinition()
 	{
-		$this->setTableName('user');
+		$this->setTableName('account');
 		$this->hasColumn('id', 'integer', 4, array(
 			'type' => 'integer',
 			'primary' => true,
@@ -78,31 +78,29 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
 			'notnull' => true,
 		));
 
-
-		$this->index('is_active_idx', array(
-			'fields' =>
-			array(
-				0 => 'is_active',
-			),
+		$this->option('symfony', array(
+			'filter' => false,
 		));
+		$this->option('collate', 'utf8_unicode_ci');
+		$this->option('charset', 'utf8');
 	}
 
 	public function setUp()
 	{
 		parent::setUp();
 
-		$this->hasOne('UserRememberKey as RememberKey', array(
+		$this->hasOne('AccountRememberKey as RememberKey', array(
 			'local' => 'id',
-			'foreign' => 'user_id'));
+			'foreign' => 'account_id'));
 
-		$this->hasOne('UserForgotPassword as ForgotPassword', array(
+		$this->hasOne('AccountForgotPassword as ForgotPassword', array(
 			'local' => 'id',
-			'foreign' => 'user_id'));
+			'foreign' => 'account_id'));
 
 
 		$timestampable0 = new Doctrine_Template_Timestampable(array(
 			'updated' => array(
-			'disabled' => true
+				'disabled' => true
 		)));
 		$this->actAs($timestampable0);
 	}

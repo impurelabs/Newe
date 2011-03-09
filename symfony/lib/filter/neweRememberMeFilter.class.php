@@ -19,7 +19,7 @@ class neweRememberMeFilter extends sfFilter
 	* @param sfFilterChain $filterChain
 	*/
 	public function execute($filterChain){
-		$cookieName = sfConfig::get('app_newe_remember_cookie_name', 'newe_remembers');
+		$cookieName = sfConfig::get('app_user_remember_cookie_name', 'newe_remembers');
 
 		if ($this->isFirstCall() && !$this->context->getUser()->isAuthenticated() && $cookie = $this->context->getRequest()->getCookie($cookieName)) {
 			$q = Doctrine_Core::getTable('UserRememberKey')->createQuery('r')

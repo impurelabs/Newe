@@ -1,0 +1,4 @@
+## YAML Template.
+all:
+  cultures: ['ro': 'ro', 'en': 'en']
+  currencies: ['eur': 'eur', 'ron': 'ron', 'usd': 'usd']

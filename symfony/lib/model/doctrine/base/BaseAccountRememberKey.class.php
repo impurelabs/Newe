@@ -1,19 +1,22 @@
 <?php
 
 /**
- * BaseUserRememberKey
+ * BaseAccountRememberKey
  * 
  * @package    newe
  * @subpackage model
  * @author     Iulian Manea <iulian.manea@impurelabs.com>
  */
-abstract class BaseUserRememberKey extends sfDoctrineRecord
+abstract class BaseAccountRememberKey extends sfDoctrineRecord
 {
 	public function setTableDefinition()
 	{
-		$this->setTableName('user_remember_key');
-		$this->hasColumn('user_id', 'integer', null, array(
+		$this->setTableName('account_remember_key');
+		$this->hasColumn('account_id', 'integer', 4, array(
 			'type' => 'integer',
+			'notnull' => true,
+			'length' => '4',
+			'unsigned' => true,
 		));
 		$this->hasColumn('remember_key', 'string', 32, array(
 			'type' => 'string',
@@ -29,13 +32,15 @@ abstract class BaseUserRememberKey extends sfDoctrineRecord
 			'form' => false,
 			'filter' => false,
 		));
+		$this->option('collate', 'utf8_unicode_ci');
+		$this->option('charset', 'utf8');
 	}
 
 	public function setUp()
 	{
 		parent::setUp();
-		$this->hasOne('User', array(
-			'local' => 'user_id',
+		$this->hasOne('Account', array(
+			'local' => 'account_id',
 			'foreign' => 'id',
 			'onDelete' => 'CASCADE'
 		));
