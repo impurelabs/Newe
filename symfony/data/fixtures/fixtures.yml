@@ -15,3 +15,7 @@
 #     password: changeme
 #     name:     Kris Wallsmith
 #     email:    kris.wallsmith@symfony-project.com
+Account:
+  iulian_manea: { email: 'iulian.manea@impurelabs.com', slug: 'iulianmanea',  salt: "1086026fa57e01de2129163ca8953b39", password: "1d412c20f613b16671e58a92e20a6d14ca28d39f", state: 1, culture: "ro", currency: "RON", type: "0", is_designer: 0 }
+
+

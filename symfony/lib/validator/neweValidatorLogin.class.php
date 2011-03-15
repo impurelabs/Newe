@@ -1,12 +1,12 @@
 <?php
 
 /**
-*
-* @package    newe
-* @subpackage validator
-* @author     Iulian Manea <iulian.manea@impurelabs.com>
-*/
-class ValidatorAccountSignin extends sfValidatorBase
+ *
+ * @package    newe
+ * @subpackage validator
+ * @author     Iulian Manea <iulian.manea@impurelabs.com>
+ */
+class neweValidatorLogin extends sfValidatorBase
 {
 	public function configure($options = array(), $messages = array())
 	{
@@ -18,21 +18,19 @@ class ValidatorAccountSignin extends sfValidatorBase
 		$email = $values['email'];
 		$password = $values['password'];
 
-		// don't allow to sign in with an empty username
+		// don't allow to sign in with an empty email
 		if ($email){
 			$account = AccountTable::getInstance()->findOneByEmail($email);
 
 			// user exists?
 			if($account){
 				// password is ok?
-				if ($user->checkPassword($password)){
-					return array_merge($values, array('user' => $user));
+				if ($account->checkPassword($password)){
+					return array_merge($values, array('account' => $account));
 				}
 			}
 		}
 
-		if ($this->getOption('throw_global_error')){
-			throw new sfValidatorError($this, 'invalid');
-		}
+		throw new sfValidatorError($this, 'invalid');
 	}
 }

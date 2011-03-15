@@ -1,0 +1,40 @@
+################################
+# OS APP ROUTES     ############
+################################
+osHomepage:
+  url: /public
+  param: { module: public, action: index }
+  options: {app: 'os'}
+  
+osLogin:
+  url: /login
+  param: { module: account, action: login }
+  options: {app: 'os'}
+
+osLogout:
+  url: /logout
+  param: { module: account, action: logout }
+  options: {app: 'os'}
+
+osForgotPassword:
+  url: /forgotPassword
+  param: { module: account, action: forgotPassword }
+  options: {app: 'os'}
+
+osFrappNotFound:
+  url: /frapp-not-found
+  param: {module: public, action: frappNotFound}
+  options: {app: 'os'}
+
+osApi:
+  url: /api/:action
+  param: {module: api}
+  options: {app: 'default'}
+
+osWebtop:
+  url: /
+  param: {module: webtop, action: index}
+  options: {app: 'os'}
+  
+  
+  

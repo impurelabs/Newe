@@ -1,12 +1,13 @@
 <?php
 
 /**
-* account actions.
-*
-* @package    newe
-* @subpackage user
-* @author     Iulian Manea <iulian.manea@impurelabs.com>
-*/
+ * account actions.
+ *
+ * @package		newe
+ * @subpackage	actions
+ * @category	OsApp
+ * @author		Iulian Manea <iulian.manea@impurelabs.com>
+ */
 class accountActions extends sfActions
 {
 	/**
@@ -14,24 +15,25 @@ class accountActions extends sfActions
 	*
 	* @param sfRequest $request A request object
 	*/
-	public function executeSignin(sfWebRequest $request)
+	public function executeLogin(sfWebRequest $request)
 	{
 		$user = $this->getUser();
 		if ($user->isAuthenticated()){
-			return $this->redirect('@webtop');
+			return $this->redirect('@os_webtop');
 		}
 
-		$this->form = new AccountSigninForm();
+		$this->form = new LoginForm();
 
 		if ($request->isMethod('post')){
 			$this->form->bind($request->getParameter($this->form->getName()));
+			$values = $this->form->getValues();
 			if ($this->form->isValid()){
 				$values = $this->form->getValues();
-				$this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
+				$this->getUser()->signin($values['account'], array_key_exists('remember', $values) ? $values['remember'] : false);
 
 				$signinUrl = $user->getReferer($request->getReferer());
 
-				return $this->redirect('' != $signinUrl ? $signinUrl : '@webtop');
+				return $this->redirect('' != $signinUrl ? $signinUrl : '@os_webtop');
 			}
 		} else {
 			// if we have been forwarded, then the referer is the current URL
@@ -47,10 +49,15 @@ class accountActions extends sfActions
 		}
 	}
 
-	public function executeSignout($request)
+	public function executeLogout($request)
 	{
 		$this->getUser()->signOut();
 
 		$this->redirect('@login');
+	}
+
+	public function executePrivata($request)
+	{
+		die('in privata');
 	}
 }

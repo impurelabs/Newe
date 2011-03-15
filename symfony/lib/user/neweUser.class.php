@@ -1,7 +1,7 @@
 <?php
 
 
-class neweUser extends sfUser implements sfSecurityUser
+class neweUser extends sfUser
 {
 	const LAST_REQUEST_NAMESPACE = 'newe/user/lastRequest';
 	const AUTH_NAMESPACE = 'newe/user/authenticated';
@@ -80,7 +80,10 @@ class neweUser extends sfUser implements sfSecurityUser
 	{
 		// signin
 		$this->setAttribute('account_id', $account->getId(), 'neweUser');
-		$this->setAttribute('appbar', $account->getAppbar(), 'neweUser');
+		/**
+		 * @todo uncomment this after figuring out a way to create the appbar
+		 */
+		//$this->setAttribute('appbar', $account->getAppbar(), 'neweUser');
 		$this->setAuthenticated(true);
 
 		// save last login
@@ -159,6 +162,11 @@ class neweUser extends sfUser implements sfSecurityUser
 		return $this->account;
 	}
 
+	public function getAccountId()
+	{
+		return $this->getAttribute('account_id', null, 'neweUser');
+	}
+
 	/**
 	* Sets the account's password.
 	*
@@ -207,7 +215,6 @@ class neweUser extends sfUser implements sfSecurityUser
 				$this->authenticated = true;
 			} else {
 				$this->authenticated = false;
-				$this->clearCredentials();
 			}
 
 			$this->dispatcher->notify(new sfEvent($this, 'user.change_authentication', array('authenticated' => $this->authenticated)));

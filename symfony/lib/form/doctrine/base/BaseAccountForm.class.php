@@ -25,6 +25,21 @@ class BaseAccountForm extends BaseFormDoctrine
 				'expanded' => false
 			)),
 		));
+
+		$this->setValidators(array(
+			'id' => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
+			'email' => new sfValidatorEmail(array('max_length' => 255)),
+			'slug' => new neweValidatorSlug(),
+			'password' => new sfValidatorString(array('max_length' => 255, 'min_length' => 5)),
+			'culture' => new sfValidatorChoice(array(
+				'multiple' => false,
+				'choices' => sfConfig::get('app_cultures')
+			)),
+			'currency' => new sfValidatorChoice(array(
+				'multiple' => false,
+				'choices' => sfConfig::get('app_currencies')
+			)),
+		));
 	}
 
 	public function getModelName()

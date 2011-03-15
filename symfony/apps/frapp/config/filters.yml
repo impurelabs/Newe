@@ -2,11 +2,13 @@
 # http://www.symfony-project.org/reference/1_4/en/12-Filters
 
 rendering: ~
-remember_me:
-  class: neweRememberMeFilter
-security:  ~
-
-# insert your own filters here
-
+frapp_setup:
+  class: neweFrappSetupFilter
+user_filter:
+  class: neweUserFilter
+security:
+  class: neweOsSecurityFilter
+  param:
+    type: security
 cache:     ~
 execution: ~

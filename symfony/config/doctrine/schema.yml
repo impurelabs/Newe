@@ -1,0 +1,192 @@
+options:
+  collate: utf8_unicode_ci
+  charset: utf8
+  symfony: { filter: false, form: false }
+
+Account:
+  connection: doctrine
+  tableName: account
+  actAs:
+    Timestampable:
+      updated: { disabled: true }
+  columns:
+    id: { type: integer(4), unsigned: true, primary: true, autoincrement: true }
+    email: { type: string(255), notnull: true }
+    slug: { type: string(255), notnull: true }
+    salt: { type: string(255), notnull: true }
+    password: { type: string(255), notnull: true }
+    state: { type: string(255), notnull: true }
+    last_login: { type: timestamp(25) }
+    validation_code: { type: string(45) }
+    culture: { type: string(3), notnull: true }
+    currency: { type: string(3), notnull: true }
+    type: { type: string(255), notnull: true }
+    is_designer: { type: boolean, default: '0' }
+  relations:
+    Frapp: { local: id, foreign: creator_id, type: many }
+    ProfileCompany: { local: id, foreign: account_id, type: one, cascade: [delete] }
+    ProfilePerson: { local: id, foreign: account_id, type: one, cascade: [delete] }
+    ProfileOrganization: { local: id, foreign: account_id, type: one, cascade: [delete] }
+    
+AccountForgotPassword:
+  connection: doctrine
+  tableName: account_forgot_password
+  actAs:
+    Timestampable: ~
+  columns:
+    account_id: { type: integer(4), unsigned: true, notnull: true }
+    unique_key: { type: string(255), primary: true }
+    expires_at: { type: timestamp(25), notnull: true }
+  relations:
+    Account: { local: account_id, foreign: id, type: one, onDelete: CASCADE }
+
+AccountRememberKey:
+  connection: doctrine
+  tableName: account_remember_key
+  actAs:
+    Timestampable: ~
+  columns:
+    account_id: { type: integer(4), unsigned: true, notnull: true }
+    remember_key: { type: string(32), primary: true }
+    ip_address: { type: string(50) }
+  relations:
+    Account: { local: account_id, foreign: id, type: one, onDelete: CASCADE }
+
+Frapp:
+  connection: doctrine
+  tableName: frapp
+  actAs:
+    Timestampable:
+      updated: { disabled: true }
+  columns:
+    id: { type: integer(4), unsigned: true, primary: true, autoincrement: true }
+    name: { type: string(50), notnull: true }
+    admins: { type: array }
+    slug: { type: string(250), notnull: true }
+    slogan: { type: string(250) }
+    state: { type: string(255), notnull: true }
+    filename: { type: string(255) }
+    logo_x1: { type: integer(2) }
+    logo_y1: { type: integer(2) }
+    logo_x2: { type: integer(2) }
+    logo_y2: { type: integer(2) }
+    sourceimage_w: { type: integer(2) }
+    sourceimage_h: { type: integer(2) }
+    state_support_sponsor: { type: bool, default: '0' }
+    sponsor_accept_pledge: { type: bool, default: '0' }
+    sponsor_goal: { type: integer(4), unsigned: true, default: 0 }
+    state_support_campaign: { type: bool, default: '0' }
+    campaign_raise_money: { type: bool, default: '0' }
+    state_support_promote: { type: bool, default: '0' }
+    state_support_petition: { type: bool, default: '0' }
+    parent_id: { type: integer(4), unsigned: true }
+    creator_id: { type: integer(4), unsigned: true, notnull: true }
+    skin_id: { type: integer(4), unsigned: true, notnull: true }
+  relations:
+    Account: { local: creator_id, foreign: id, type: one }
+    Mdls: { local: id, foreign: frapp_id, type: many, cascade: [delete], class: FrappMdl }
+    Skin: { local: skin_id, foreign: id, type: one, class: FrappSkin }
+
+FrappMdl:
+  connection: doctrine
+  tableName: frapp_mdl
+  actAs:
+    Sluggable: {fields: [name], uniqueBy: ['frapp_id']}
+    Sortable: {uniqueBy: ['frapp_id']}
+  columns:
+    id: { type: integer(4), unsigned: true, primary: true, autoincrement: true }
+    slug: { type: string(255), notnull: true }
+    name: { type: string(100), notnull: true }
+    type_key: { type: string(10), notnull: true }
+    frapp_id: { type: integer(4), unsigned: true, notnull: true }
+  relations:
+    Frapp: { local: frapp_id, foreign: id, type: one }
+
+FrappSkin:
+  connection: doctrine
+  tableName: frapp_skin
+  actAs:
+    Timestampable:
+      updated: { disabled: true }
+  columns:
+    id: { type: integer(4), unsigned: true, primary: true, autoincrement: true }
+    name: { type: string(250), notnull: true }
+    description: { type: text }
+    state: { type: enum, values: [0, 1] }
+    author_id: { type: integer(4), unsigned: true }
+  relations:
+    Author: { local: author_id, foreign: id, type: one, class: Account }
+      
+Location:
+  connection: doctrine
+  tableName: location
+  columns:
+    id: { type: integer(4), unsigned: true, primary: true, autoincrement: true }
+    city: { type: string(100), notnull: true }
+    region: { type: string(100), notnull: true }
+    country: { type: string(2), notnull: true }
+    lang: { type: string(2), notnull: true }
+    population: { type: integer(3), unsigned: true, default: '0', notnull: true }
+
+
+ProfileCompany:
+  connection: doctrine
+  tableName: profile_company
+  columns:
+    account_id: { type: integer(4), unsigned: true, primary: true, notnull: true }
+    name: { type: string(100), notnull: true }
+    brand_name: { type: string(100), notnull: true }
+    slogan: { type: string(250) }
+    cui: { type: string(100), notnull: true }
+    contact_name: { type: string(100) } 
+    contact_job_title: { type: string(100) }
+    contact_email: { type: string(100) }
+    contact_phone: { type: string(100) }
+    location_id: { type: integer(4), unsigned: true }
+  relations:
+    Location: { local: location_id, foreign: id, type: one }
+    Account: { local: account_id, foreign: id, type: one }
+
+      
+ProfileOrganization:
+  connection: doctrine
+  tableName: profile_organization
+  columns:
+    account_id: { type: integer(4), unsigned: true, primary: true, notnull: true }
+    name: { type: string(100), notnull: true }
+    brand_name: { type: string(100), notnull: true }
+    slogan: { type: string(250) }
+    cui: { type: string(100), notnull: true }
+    contact_name: { type: string(100) }
+    contact_job_title: { type: string(100) }
+    contact_email: { type: string(100) }
+    contact_phone: { type: string(100) }
+    location_id: { type: integer(4), unsigned: true }
+  relations:
+    Location: { local: location_id, foreign: id, type: one }
+    Account: { local: account_id, foreign: id, type: one }
+
+
+ProfilePerson:
+  connection: doctrine
+  tableName: profile_person
+  columns:
+    account_id: { type: integer(4), unsigned: true, primary: true, notnull: true }
+    first_name: { type: string(100) }
+    last_name: { type: string(100) }
+    slogan: { type: string(250) }
+    date_of_birth: { type: date(25) }
+    gender: { type: enum, values: ['0', '1'] }
+    location_id: { type: integer(4), unsigned: true }
+  relations:
+    Location: { local: location_id, foreign: id, type: one }
+    Account: { local: account_id, foreign: id, type: one }
+
+
+Session:
+  connection: doctrine
+  tableName: session
+  columns:
+    sess_id: { type: string(255), primary: true }
+    sess_data: { type: text }
+    sess_time: { type: integer(4), unsigned: true, notnull: true }

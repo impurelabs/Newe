@@ -5,9 +5,8 @@ sfCoreAutoload::register();
 
 class ProjectConfiguration extends sfProjectConfiguration
 {
-  public function setup()
-  {
-  	$this->setWebDir($this->getRootDir().'/../web');
-    $this->enablePlugins('sfDoctrinePlugin');
-  }
+	public function setup()
+	{
+		$this->enablePlugins('sfDoctrinePlugin');
+	}
 }

@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Processes the "remember me" cookie.
+ * Initiates the User object and takes care of the remember me cookie
  * 
  * This filter should be added to the application filters.yml file **above**
  * the security filter:
  * 
- *    remember_me:
- *      class: sfGuardRememberMeFilter
+ *    newe_user:
+ *      class: neweUser
  * 
  *    security: ~
  */
-class neweRememberMeFilter extends sfFilter
+class neweUserFilter extends sfFilter
 {
 	/**
 	* Executes the filter chain.
