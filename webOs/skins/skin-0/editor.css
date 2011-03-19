@@ -1,0 +1,52 @@
+/*************************************************************************************************************
+ * TITLES, TEXT and LINKS ************************************************************************************
+ *************************************************************************************************************
+ *************************************************************************************************************/
+
+body{ font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; text-decoration: none; color: #333333 }
+h1{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-style: normal; font-weight: 900; text-decoration: none; color: #6c6c6c }
+h2.slogan{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-style: normal; font-weight: normal; text-decoration: none; color: #6c6c6c }
+
+/* titles used in cell-hd */
+.cell-hd h2{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #d70000 }
+.cell-hd h3{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #6c6c6c }
+
+/* The titles used inside cell-bd */
+h2{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #d70000 }
+h3{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #6c6c6c }
+h4{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-style: normal; font-weight: bold; text-decoration: none; color: #000000 }
+h5{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-weight: bold; text-decoration: none; color: #6c6c6c }
+h6{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; text-decoration: none; color: #6c6c6c }
+
+/* The titles used inside gadgets */
+.gadget-hd h2{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #d70000 }
+.gadget-bd h2{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #d70000 }
+.gadget-bd h3{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #6c6c6c }
+.gadget-bd h4{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-style: normal; font-weight: bold; text-decoration: none; color: #000000 }
+.gadget-bd h5{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-weight: bold; text-decoration: none; color: #6c6c6c }
+.gadget-bd h6{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; text-decoration: none; color: #6c6c6c }
+
+.h3-container:hover h3{ display: inline; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #d70000 } 
+
+.caption{ font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; color: #6c6c6c }
+.explanation { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; color: #6c6c6c}
+.resptag{ display:inline-block; font-size:12px; margin-right:10px; padding: 2px 5px; margin-bottom: 5px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; box-shadow: 0px 1px 3px #d8d8d8; -moz-box-shadow: 0px 1px 3px #d8d8d8; -webkit-box-shadow: 0px 1px 3px #d8d8d8; border: 1px solid #d5d5d5; background-color: #ffffff }
+.timestampable { background-image: url('../images/time.png'); background-repeat: no-repeat; padding-left: 15px; background-position: 0 2px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; text-decoration: none; color: #6c6c6c }
+
+  /* NORMAL LINKS */
+a:link, a:active, a:visited { 
+  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; text-decoration: none; color: #0088cc; }
+a:hover{ 
+  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; text-decoration: underline; color: #0088cc; }
+	
+/* LINKS IN TITLES */
+h2 a:link, h2 a:active, h2 a:visited, h2 a:hover { 
+  font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #d70000 }
+h3 a:link, h3 a:active, h3 a:visited { 
+  font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #6c6c6c }
+h3 a:hover { 
+  font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; text-decoration: none; color: #d70000 }
+h4 a:link, h4 a:active, h4 a:visited, h4 a:hover { 
+  font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-style: normal; font-weight: bold; text-decoration: none;   color: #000000 }	
+	
+	

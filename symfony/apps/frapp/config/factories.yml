@@ -28,14 +28,14 @@ dev:
     param:
       delivery_strategy: none
   storage:
-    class: sfMySQLSessionStorage
+    class: sfPDOSessionStorage
     param:
       db_table: session
       database: doctrine
 
 all:
   routing:
-    class: sfPatternRouting
+    class: neweFrappPatternRouting
     param:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true

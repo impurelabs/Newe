@@ -13,19 +13,22 @@ Doctrine_Manager::getInstance()->bindComponent('FrappMdl', 'doctrine');
  * @property string $type_key
  * @property integer $frapp_id
  * @property Frapp $Frapp
+ * @property Doctrine_Collection $Mdl_Blog_Post
  * 
- * @method integer  getId()       Returns the current record's "id" value
- * @method string   getSlug()     Returns the current record's "slug" value
- * @method string   getName()     Returns the current record's "name" value
- * @method string   getTypeKey()  Returns the current record's "type_key" value
- * @method integer  getFrappId()  Returns the current record's "frapp_id" value
- * @method Frapp    getFrapp()    Returns the current record's "Frapp" value
- * @method FrappMdl setId()       Sets the current record's "id" value
- * @method FrappMdl setSlug()     Sets the current record's "slug" value
- * @method FrappMdl setName()     Sets the current record's "name" value
- * @method FrappMdl setTypeKey()  Sets the current record's "type_key" value
- * @method FrappMdl setFrappId()  Sets the current record's "frapp_id" value
- * @method FrappMdl setFrapp()    Sets the current record's "Frapp" value
+ * @method integer             getId()            Returns the current record's "id" value
+ * @method string              getSlug()          Returns the current record's "slug" value
+ * @method string              getName()          Returns the current record's "name" value
+ * @method string              getTypeKey()       Returns the current record's "type_key" value
+ * @method integer             getFrappId()       Returns the current record's "frapp_id" value
+ * @method Frapp               getFrapp()         Returns the current record's "Frapp" value
+ * @method Doctrine_Collection getMdlBlogPost()   Returns the current record's "Mdl_Blog_Post" collection
+ * @method FrappMdl            setId()            Sets the current record's "id" value
+ * @method FrappMdl            setSlug()          Sets the current record's "slug" value
+ * @method FrappMdl            setName()          Sets the current record's "name" value
+ * @method FrappMdl            setTypeKey()       Sets the current record's "type_key" value
+ * @method FrappMdl            setFrappId()       Sets the current record's "frapp_id" value
+ * @method FrappMdl            setFrapp()         Sets the current record's "Frapp" value
+ * @method FrappMdl            setMdlBlogPost()   Sets the current record's "Mdl_Blog_Post" collection
  * 
  * @package    newe
  * @subpackage model
@@ -66,11 +69,10 @@ abstract class BaseFrappMdl extends sfDoctrineRecord
              'length' => 4,
              ));
 
-        $this->option('collate', 'utf8_unicode_ci');
-        $this->option('charset', 'utf8');
         $this->option('symfony', array(
              'filter' => false,
-             'form' => false,
+             'collate' => 'utf8_unicode_ci',
+             'charset' => 'utf8',
              ));
     }
 
@@ -80,6 +82,10 @@ abstract class BaseFrappMdl extends sfDoctrineRecord
         $this->hasOne('Frapp', array(
              'local' => 'frapp_id',
              'foreign' => 'id'));
+
+        $this->hasMany('Mdl_Blog_Post', array(
+             'local' => 'id',
+             'foreign' => 'mdl_id'));
 
         $sluggable0 = new Doctrine_Template_Sluggable(array(
              'fields' => 

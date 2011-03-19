@@ -1,0 +1,70 @@
+Frapp:
+  connection: doctrine
+  tableName: frapp
+  actAs:
+    Timestampable:
+      updated: { disabled: true }
+  options:
+    symfony: { filter: false, collate: utf8_unicode_ci, charset: utf8 }
+  columns:
+    id: { type: integer(4), unsigned: true, primary: true, autoincrement: true }
+    name: { type: string(50), notnull: true }
+    admins: { type: array }
+    slug: { type: string(250), notnull: true }
+    slogan: { type: string(250) }
+    state: { type: string(255), notnull: true }
+    filename: { type: string(255) }
+    logo_x1: { type: integer(2) }
+    logo_y1: { type: integer(2) }
+    logo_x2: { type: integer(2) }
+    logo_y2: { type: integer(2) }
+    sourceimage_w: { type: integer(2) }
+    sourceimage_h: { type: integer(2) }
+    state_support_sponsor: { type: bool, default: '0' }
+    sponsor_accept_pledge: { type: bool, default: '0' }
+    sponsor_goal: { type: integer(4), unsigned: true, default: 0 }
+    state_support_campaign: { type: bool, default: '0' }
+    campaign_raise_money: { type: bool, default: '0' }
+    state_support_promote: { type: bool, default: '0' }
+    state_support_petition: { type: bool, default: '0' }
+    parent_id: { type: integer(4), unsigned: true }
+    creator_id: { type: integer(4), unsigned: true, notnull: true }
+    skin_id: { type: integer(4), unsigned: true, notnull: true }
+  relations:
+    Account: { local: creator_id, foreign: id, type: one }
+    Mdls: { local: id, foreign: frapp_id, type: many, cascade: [delete], class: FrappMdl }
+    Skin: { local: skin_id, foreign: id, type: one, class: FrappSkin }
+
+FrappSkin:
+  connection: doctrine
+  tableName: frapp_skin
+  actAs:
+    Timestampable:
+      updated: { disabled: true }
+  options:
+    symfony: {filter: false, collate: utf8_unicode_ci, charset: utf8}
+  columns:
+    id: { type: integer(4), unsigned: true, primary: true, autoincrement: true }
+    name: { type: string(250), notnull: true }
+    description: { type: text }
+    state: { type: enum, values: [0, 1] }
+    author_id: { type: integer(4), unsigned: true }
+  relations:
+    Author: { local: author_id, foreign: id, type: one, class: Account }
+
+FrappMdl:
+  connection: doctrine
+  tableName: frapp_mdl
+  options:
+    symfony: {filter: false, collate: utf8_unicode_ci, charset: utf8}
+  actAs:
+    Sluggable: { fields: [name], uniqueBy: ['frapp_id'] }
+    Sortable: { uniqueBy: ['frapp_id'] }
+  columns:
+    id: { type: integer(4), unsigned: true, primary: true, autoincrement: true }
+    slug: { type: string(255), notnull: true }
+    name: { type: string(100), notnull: true }
+    type_key: { type: string(10), notnull: true }
+    frapp_id: { type: integer(4), unsigned: true, notnull: true }
+  relations:
+    Frapp: { local: frapp_id, foreign: id, type: one }

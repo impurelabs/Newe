@@ -18,9 +18,16 @@ class Frapp extends BaseFrapp
 	const STATE_DESTROYED   = 4;
 
 	/**
+	 * A collection of FrappMld objects associated with this frapp, ordered by position.
+	 * @var Dotrine_Collection
+	 */
+	protected $mdls = null;
+
+	/**
 	 * Returns an array with all the data that should be available in all the views + layout.
 	 * 
 	 * @return array
+	 * @todo
 	 */
 	public function getLayoutDetails()
 	{
@@ -33,7 +40,7 @@ class Frapp extends BaseFrapp
 			'state_support_campaign' => $this->getStateSupportCampaign(),
 			'state_support_promote' => $this->getStateSupportPromote(),
 			'state_support_petition' => $this->getStateSupportPetition(),
-			'menu_item' => array(
+			'menu_items' => array(
 				$this->getMenuForView()
 			)
 		);
@@ -44,6 +51,22 @@ class Frapp extends BaseFrapp
 	 */
 	public function getMenuForView()
 	{
+		$items = array();
+		foreach ($this->getMdls() as $mdl){
+			$items[] = array(
+				'name' => $mdl->getName(),
+				'url' => sfContext::getInstance()->getController()->genUrl('@frapp_mdl_' . $mdl->getTypeKey() . '_' . $mdl->getSlug() . '_index?frapp_slug=' . $this->getSlug())
+			);
+		}
 
+		return $items;
+	}
+
+	public function loadMdlRoutes(neweFrappPatternRouting $routing)
+	{
+		foreach ($this->getMdls() as $mdl){
+			$mdlSlug = $mdl->getSlug();
+			include sfConfig::get('sf_app_config_dir') . DIRECTORY_SEPARATOR . 'routing_mdl_' . $mdl->getTypeKey() . '.php';
+		}
 	}
 }

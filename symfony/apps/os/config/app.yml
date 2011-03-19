@@ -3,6 +3,3 @@
 
 # default values
 all:
-  user:
-    remember_cookie_name: "newe_remembers"
-    remember_key_expiration_age: 1296000

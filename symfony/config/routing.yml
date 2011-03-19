@@ -1,40 +1,66 @@
 ################################
 # OS APP ROUTES     ############
 ################################
-osHomepage:
+os_index:
   url: /public
+  class: neweOsRoute
   param: { module: public, action: index }
   options: {app: 'os'}
   
-osLogin:
+os_login:
   url: /login
+  class: neweOsRoute
   param: { module: account, action: login }
   options: {app: 'os'}
 
-osLogout:
+os_logout:
   url: /logout
+  class: neweOsRoute
   param: { module: account, action: logout }
   options: {app: 'os'}
 
-osForgotPassword:
+os_forgot_password:
   url: /forgotPassword
+  class: neweOsRoute
   param: { module: account, action: forgotPassword }
   options: {app: 'os'}
 
-osFrappNotFound:
+os_frapp_not_found:
   url: /frapp-not-found
+  class: neweOsRoute
   param: {module: public, action: frappNotFound}
   options: {app: 'os'}
 
-osApi:
+os_api:
   url: /api/:action
+  class: neweOsRoute
   param: {module: api}
-  options: {app: 'default'}
-
-osWebtop:
-  url: /
-  param: {module: webtop, action: index}
   options: {app: 'os'}
-  
-  
-  
+
+os_webtop:
+  url: /
+  class: neweOsRoute
+  param: {module: default, action: index}
+  options: {app: 'os'}
+
+os_profile_index:
+  url: /:slug
+  class: neweOsRoute
+  param: { module: profile, action: index }
+  options: { app: 'os' }
+
+os_profile_settings:
+  url: /:slug/settings
+  class: neweOsRoute
+  param: { module: profile, action: settings }
+  options: { app: 'os' }
+
+
+
+
+
+frapp_index:
+  url: /
+  class: neweFrappRoute
+  param: { module: default, action: tetul }
+  options: { app: 'frapp' }

@@ -3,7 +3,5 @@
 
 # default values
 all:
-  newe:
-    remember_cookie_name: "newe_remembers"
 
     

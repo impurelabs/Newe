@@ -153,37 +153,8 @@ function emoPluginTypeName($typeKey)
 /**
  * SKIN FUNCTIONS
  */
-function emoSkinPath($skinId)
-{
-	return sfConfig::get('app_view_skin_container_path') . '/skin-' . $skinId;  
-}
 
-function emoSkinImagePath($filename)
+function neweFrappSkinCssPath($skinId)
 {
-	return sfConfig::get('app_view_skin_path') . '/images/' . $filename;
-}
-
-function emoCommonImagePath($filename)
-{
-	return sfConfig::get('app_view_common_images_path') . '/' . $filename;
-}
-
-function emoSkinCssPath()
-{
-	return sfConfig::get('app_view_skin_path') . '/css/main.css';
-}
-
-function emoEditorCssPath()
-{
-	return sfConfig::get('app_view_skin_path') . '/css/editor.css';
-}
-
-function emoEditorSkinName()
-{
-	return 'emo-skin-0';
-}
-
-function emoCommonCssPath()
-{
-	return sfConfig::get('app_view_common_css_path');
+	return sfConfig::get('app_frapp_skin_path') . '/skin/skin-' . $skinId . '/main.css';
 }

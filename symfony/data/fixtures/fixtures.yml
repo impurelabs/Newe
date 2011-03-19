@@ -19,3 +19,12 @@ Account:
   iulian_manea: { email: 'iulian.manea@impurelabs.com', slug: 'iulianmanea',  salt: "1086026fa57e01de2129163ca8953b39", password: "1d412c20f613b16671e58a92e20a6d14ca28d39f", state: 1, culture: "ro", currency: "RON", type: "0", is_designer: 0 }
 
 
+Frapp:
+  letsdoitromania: { name: "Let's do it Romania", slug: "letsdoitromania", slogan: "Curatenie in toata tara intr-o singura zi", state: 1, creator_id: 1, skin_id: 1 }
+
+FrappSkin:
+  skin_1: { name: "First skin", state: 1, author_id: 1 }
+
+FrappMdl:
+  mdl_1: { name: "Blogul meu", type_key: "blog", Frapp: letsdoitromania }
+  mdl_2: { name: "Noutatile", type_key: "blog", Frapp: letsdoitromania }

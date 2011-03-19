@@ -47,11 +47,10 @@ abstract class BaseAccountRememberKey extends sfDoctrineRecord
              'length' => 50,
              ));
 
-        $this->option('collate', 'utf8_unicode_ci');
-        $this->option('charset', 'utf8');
         $this->option('symfony', array(
              'filter' => false,
-             'form' => false,
+             'collate' => 'utf8_unicode_ci',
+             'charset' => 'utf8',
              ));
     }
 

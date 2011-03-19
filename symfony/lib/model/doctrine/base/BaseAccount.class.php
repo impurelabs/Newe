@@ -23,9 +23,9 @@ Doctrine_Manager::getInstance()->bindComponent('Account', 'doctrine');
  * @property ProfileCompany $ProfileCompany
  * @property ProfilePerson $ProfilePerson
  * @property ProfileOrganization $ProfileOrganization
+ * @property Doctrine_Collection $FrappSkin
  * @property Doctrine_Collection $AccountForgotPassword
  * @property Doctrine_Collection $AccountRememberKey
- * @property Doctrine_Collection $FrappSkin
  * 
  * @method integer             getId()                    Returns the current record's "id" value
  * @method string              getEmail()                 Returns the current record's "email" value
@@ -43,9 +43,9 @@ Doctrine_Manager::getInstance()->bindComponent('Account', 'doctrine');
  * @method ProfileCompany      getProfileCompany()        Returns the current record's "ProfileCompany" value
  * @method ProfilePerson       getProfilePerson()         Returns the current record's "ProfilePerson" value
  * @method ProfileOrganization getProfileOrganization()   Returns the current record's "ProfileOrganization" value
+ * @method Doctrine_Collection getFrappSkin()             Returns the current record's "FrappSkin" collection
  * @method Doctrine_Collection getAccountForgotPassword() Returns the current record's "AccountForgotPassword" collection
  * @method Doctrine_Collection getAccountRememberKey()    Returns the current record's "AccountRememberKey" collection
- * @method Doctrine_Collection getFrappSkin()             Returns the current record's "FrappSkin" collection
  * @method Account             setId()                    Sets the current record's "id" value
  * @method Account             setEmail()                 Sets the current record's "email" value
  * @method Account             setSlug()                  Sets the current record's "slug" value
@@ -62,9 +62,9 @@ Doctrine_Manager::getInstance()->bindComponent('Account', 'doctrine');
  * @method Account             setProfileCompany()        Sets the current record's "ProfileCompany" value
  * @method Account             setProfilePerson()         Sets the current record's "ProfilePerson" value
  * @method Account             setProfileOrganization()   Sets the current record's "ProfileOrganization" value
+ * @method Account             setFrappSkin()             Sets the current record's "FrappSkin" collection
  * @method Account             setAccountForgotPassword() Sets the current record's "AccountForgotPassword" collection
  * @method Account             setAccountRememberKey()    Sets the current record's "AccountRememberKey" collection
- * @method Account             setFrappSkin()             Sets the current record's "FrappSkin" collection
  * 
  * @package    newe
  * @subpackage model
@@ -136,11 +136,10 @@ abstract class BaseAccount extends sfDoctrineRecord
              'default' => '0',
              ));
 
-        $this->option('collate', 'utf8_unicode_ci');
-        $this->option('charset', 'utf8');
         $this->option('symfony', array(
              'filter' => false,
-             'form' => false,
+             'collate' => 'utf8_unicode_ci',
+             'charset' => 'utf8',
              ));
     }
 
@@ -172,6 +171,10 @@ abstract class BaseAccount extends sfDoctrineRecord
              0 => 'delete',
              )));
 
+        $this->hasMany('FrappSkin', array(
+             'local' => 'id',
+             'foreign' => 'author_id'));
+
         $this->hasMany('AccountForgotPassword', array(
              'local' => 'id',
              'foreign' => 'account_id'));
@@ -179,10 +182,6 @@ abstract class BaseAccount extends sfDoctrineRecord
         $this->hasMany('AccountRememberKey', array(
              'local' => 'id',
              'foreign' => 'account_id'));
-
-        $this->hasMany('FrappSkin', array(
-             'local' => 'id',
-             'foreign' => 'author_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              'updated' => 

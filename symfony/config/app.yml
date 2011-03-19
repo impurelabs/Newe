@@ -2,3 +2,54 @@
 all:
   cultures: ['ro': 'ro', 'en': 'en']
   currencies: ['eur': 'eur', 'ron': 'ron', 'usd': 'usd']
+
+  frapp:
+    skin_path: "http://newe.com/skins"
+    base_host: "newe.com"
+
+  os:
+    base_host: "newe.com"
+    
+  user:
+    remember_cookie_name: "newe_remembers"
+    remember_key_expiration_age: 1296000
+
+  frapp_mdl:
+    blog:
+      type_key: "blog"
+      model: Plugin_Blog_Post
+      module: "pluginBlog"
+      default_name: "My Blog"
+      has_menu_dropdown: false
+    pages:
+      type_key: "pages"
+      model: Plugin_Pages_Page
+      module: "pluginPages"
+      default_name: "My Pages"
+      has_menu_dropdown: true
+    photos:
+      model: Plugin_Photos_Album
+      module: "pluginPhotos"
+      default_name: "My Photos"
+      type_key: "photos"
+      path: %SF_WEB_DIR%/content/plugin_photos
+      path_for_web: /content/plugin_photos
+      nophoto_image_path: /defaults/plugin-photos-nophoto.jpg
+      maxfilesize: 5000000
+      sourceimage_size: 600
+      thumbnail_size: 126
+      thumbnail_small_size: 45
+      has_menu_dropdown: false
+    gadgets:
+      model: Plugin_Gadgets_Gadget
+      module: "pluginGadgets"
+      default_name: "My Gadgets"
+      type_key: "gadgets"
+      has_menu_dropdown: false
+      container_min_height: 400  # Also change in common.css
+      gadget_min_width: 230
+      gadget_min_height: 20
+      gadget_default_coord_x: 0
+      gadget_default_coord_y: 0
+      grid_x: 10
+      grid_y: 10

@@ -102,11 +102,10 @@ abstract class BaseProfileOrganization extends sfDoctrineRecord
              'length' => 4,
              ));
 
-        $this->option('collate', 'utf8_unicode_ci');
-        $this->option('charset', 'utf8');
         $this->option('symfony', array(
              'filter' => false,
-             'form' => false,
+             'collate' => 'utf8_unicode_ci',
+             'charset' => 'utf8',
              ));
     }
 
